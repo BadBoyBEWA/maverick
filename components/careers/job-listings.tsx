@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, FormEvent } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Section, FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
 import { MapPin, Clock, DollarSign, ChevronDown, ChevronUp, CheckCircle2, Loader2 } from "lucide-react"
@@ -314,7 +314,7 @@ export function JobListings() {
                 Fill in your details below. We will review your application promptly.
               </p>
               <form
-                onSubmit={async (e) => {
+                onSubmit={async (e: FormEvent<HTMLFormElement>) => {
                   e.preventDefault()
                   const form = e.currentTarget as HTMLFormElement
                   const data = new FormData(form)
