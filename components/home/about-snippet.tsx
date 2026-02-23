@@ -54,7 +54,7 @@ export function AboutSnippet() {
               About Us
             </span>
             <h2 className="text-balance text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              {"Dallas'Trusted Steel Supply Partner Since 2010"}
+              {"Dallas' Trusted Steel Supply Partner Since 2010"}
             </h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">
               {"Maverick's LLC has been at the forefront of steel supply and metal fabrication for over a decade. We serve the construction, mining, and industrial sectors across Texas and beyond, providing premium-grade materials that stand the test of time."}

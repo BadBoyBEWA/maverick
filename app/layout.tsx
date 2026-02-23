@@ -33,6 +33,12 @@ export const metadata: Metadata = {
       'Empowering construction and mining with premium steel solutions since 2010.',
     type: 'website',
   },
+  // add favicons; ensure the files exist under public/
+  icons: {
+    // primary icon is PNG in this project instead of .ico
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+  },
 }
 
 export const viewport: Viewport = {
