@@ -16,12 +16,21 @@ export function ContactForm() {
     company: "",
     subject: "",
     message: "",
+    // ADDED: marketing consent field - defaults to false (unchecked)
+    marketingConsent: false,
   })
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    const { name, value, type } = e.target
+    // ADDED: handle checkbox separately
+    if (type === 'checkbox') {
+      const checked = (e.target as HTMLInputElement).checked
+      setFormData((prev) => ({ ...prev, [name]: checked }))
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }))
+    }
     // Clear any previous errors when user starts typing
     if (error) setError(null)
   }
@@ -65,6 +74,8 @@ export function ContactForm() {
       company: "",
       subject: "",
       message: "",
+      // ADDED: reset marketing consent to false
+      marketingConsent: false,
     })
   }
 
@@ -241,6 +252,34 @@ export function ContactForm() {
             />
           </div>
           
+          {/* ADDED: Marketing Consent Checkbox - Meets all Mailjet requirements */}
+          <div className="flex items-start gap-3 mt-2 p-4 bg-gray-50 dark:bg-gray-800 rounded-md border border-border">
+            <input
+              type="checkbox"
+              id="marketingConsent"
+              name="marketingConsent"
+              checked={formData.marketingConsent}
+              onChange={handleChange}
+              disabled={loading}
+              className="mt-1 h-4 w-4 rounded border-border text-primary focus:ring-primary disabled:opacity-50"
+            />
+            <div className="flex flex-col">
+              <label
+                htmlFor="marketingConsent"
+                className="text-sm font-medium text-foreground"
+              >
+                Marketing Consent <span className="text-primary">*</span>
+              </label>
+              <p className="text-xs text-muted-foreground">
+                I would like to receive occasional marketing updates about steel products, 
+                special offers, and industry news from Maverick's LLC. You can unsubscribe at any time.
+              </p>
+              <p className="text-xs text-muted-foreground mt-1 italic">
+                This box must be checked to receive marketing communications. It is unchecked by default.
+              </p>
+            </div>
+          </div>
+          
           <button
             type="submit"
             disabled={loading}
@@ -250,8 +289,10 @@ export function ContactForm() {
             {loading ? 'Sending...' : 'Send Message'}
           </button>
           
+          {/* MODIFIED: Updated privacy text */}
           <p className="text-xs text-muted-foreground text-center mt-2">
-            By submitting this form, you agree to our privacy policy and consent to being contacted.
+            By submitting this form, you agree to our privacy policy. Marketing consent is optional 
+            and separate from your inquiry.
           </p>
         </form>
       </div>
