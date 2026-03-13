@@ -30,24 +30,6 @@ export async function POST(request) {
       )
     }
 
-    const resume = formData.get('resume')
-    if (resume) {
-      if (typeof resume === 'object' && typeof resume.arrayBuffer === 'function') {
-        try {
-          const buffer = await resume.arrayBuffer()
-          const base64 = Buffer.from(buffer).toString('base64')
-          if (base64 && base64.length > 0 && resume.name) {
-            attachments.push({
-              name: resume.name,
-              content: base64, // Resend expects `content` (base64 string)
-            })
-          }
-        } catch (fileErr) {
-          console.error('Error reading resume file from formData:', fileErr)
-        }
-      }
-    }
-
     const toEmail = process.env.HR_EMAIL || 'support@maverickllctexas.com'
 
     const subject = `New application for ${jobTitle}`
@@ -103,7 +85,6 @@ export async function POST(request) {
         subject,
         html: htmlBody,
         text: `Name: ${name}\nEmail: ${email}\nPosition: ${jobTitle}\n\nCover Letter:\n${coverLetter}`,
-        attachments: attachments.length ? attachments : undefined,
       })
     } catch (sendErr) {
       console.error('Resend request failed (apply):', sendErr)
