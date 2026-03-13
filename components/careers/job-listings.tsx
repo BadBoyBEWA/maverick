@@ -122,17 +122,14 @@ export function JobListings() {
   const handleApply = async (jobTitle: string, formData: FormData) => {
     setLoading(true)
     try {
-      const payload: Record<string, any> = {}
-      formData.forEach((value, key) => (payload[key] = value))
-      payload.jobTitle = jobTitle
+      // append job title before sending
+      formData.append('jobTitle', jobTitle)
 
       const res = await fetch('/api/apply', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
+        body: formData, // send as multipart/form-data
       })
+
       const data = await res.json()
       if (data.success) {
         setSubmitted((prev) => new Set(prev).add(jobTitle))
@@ -328,6 +325,7 @@ export function JobListings() {
                   </label>
                   <input
                     id="apply-name"
+                    name="name"
                     type="text"
                     required
                     className="w-full rounded-sm border border-input bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
@@ -340,6 +338,7 @@ export function JobListings() {
                   </label>
                   <input
                     id="apply-email"
+                    name="email"
                     type="email"
                     required
                     className="w-full rounded-sm border border-input bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
@@ -352,11 +351,25 @@ export function JobListings() {
                   </label>
                   <textarea
                     id="apply-message"
+                    name="coverLetter"
                     rows={3}
                     className="w-full rounded-sm border border-input bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
                     placeholder="Tell us why you're a great fit..."
                   />
                 </div>
+                {/* <div>
+                  <label htmlFor="apply-resume" className="mb-1 block text-xs font-medium text-foreground">
+                    Upload CV / Resume
+                  </label>
+                  <input
+                    id="apply-resume"
+                    name="resume"
+                    type="file"
+                    accept=".pdf,.doc,.docx"
+                    required
+                    className="w-full rounded-sm border border-input bg-background px-3 py-2.5 text-sm text-foreground focus:border-primary focus:outline-none"
+                  />
+                </div> */}
                 <div className="flex gap-3">
                   <button
                     type="submit"
