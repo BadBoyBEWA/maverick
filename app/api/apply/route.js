@@ -10,10 +10,12 @@ export async function POST(request) {
     const formData = await request.formData()
     const name = formData.get('name')?.toString() || ''
     const email = formData.get('email')?.toString() || ''
+    const phone = formData.get('phone')?.toString() || '' // Add phone number
     const coverLetter = formData.get('coverLetter')?.toString() || ''
     const jobTitle = formData.get('jobTitle')?.toString() || ''
+    const resumeFile = formData.get('resume') // Get the file from form data
 
-    // basic validation
+    // basic validation - phone is optional, so only validate name, email, jobTitle
     if (!name || !email || !jobTitle) {
       return NextResponse.json(
         { success: false, error: 'Missing required fields' },
@@ -46,6 +48,7 @@ export async function POST(request) {
           .field { margin-bottom: 20px; }
           .field-label { font-weight: bold; color: #1e3a8a; }
           .field-value { margin-top: 5px; padding: 10px; background: white; border-radius: 4px; }
+          .attachment-info { margin-top: 20px; padding: 15px; background: #e6f3ff; border-radius: 4px; }
         </style>
       </head>
       <body>
@@ -62,6 +65,12 @@ export async function POST(request) {
               <div class="field-label">Email:</div>
               <div class="field-value">${email}</div>
             </div>
+            ${phone ? `
+            <div class="field">
+              <div class="field-label">Phone Number:</div>
+              <div class="field-value">${phone}</div>
+            </div>
+            ` : ''}
             <div class="field">
               <div class="field-label">Position:</div>
               <div class="field-value">${jobTitle}</div>
@@ -70,22 +79,46 @@ export async function POST(request) {
               <div class="field-label">Cover Letter:</div>
               <div class="field-value">${coverLetter.replace(/\n/g, '<br>')}</div>
             </div>
+            ${resumeFile ? `
+            <div class="attachment-info">
+              <strong>Resume/CV attached:</strong> ${resumeFile.name}
+            </div>
+            ` : ''}
           </div>
         </div>
       </body>
       </html>
     `
 
+    // Prepare email content
+    const emailContent = {
+      from: process.env.FROM_EMAIL || '"Maverick\'s LLC" <contact@maverickllctexas.com>',
+      to: [toEmail],
+      replyTo: email,
+      subject,
+      html: htmlBody,
+      text: `Name: ${name}\nEmail: ${email}${phone ? `\nPhone: ${phone}` : ''}\nPosition: ${jobTitle}\n\nCover Letter:\n${coverLetter}${resumeFile ? `\n\nResume attached: ${resumeFile.name}` : ''}`,
+    }
+
+    // Add attachment if file exists
+    if (resumeFile && resumeFile.size > 0) {
+      // Convert file to buffer
+      const bytes = await resumeFile.arrayBuffer()
+      const buffer = Buffer.from(bytes)
+      
+      // Add attachment to email
+      emailContent.attachments = [
+        {
+          filename: resumeFile.name,
+          content: buffer.toString('base64'),
+          contentType: resumeFile.type,
+        }
+      ]
+    }
+
     let sendResponse
     try {
-      sendResponse = await resend.emails.send({
-        from: process.env.FROM_EMAIL || '"Maverick\'s LLC" <contact@maverickllctexas.com>',
-        to: [toEmail],
-        replyTo: email,
-        subject,
-        html: htmlBody,
-        text: `Name: ${name}\nEmail: ${email}\nPosition: ${jobTitle}\n\nCover Letter:\n${coverLetter}`,
-      })
+      sendResponse = await resend.emails.send(emailContent)
     } catch (sendErr) {
       console.error('Resend request failed (apply):', sendErr)
       return NextResponse.json(
@@ -103,7 +136,11 @@ export async function POST(request) {
       )
     }
 
-    return NextResponse.json({ success: true, messageId: data?.id })
+    return NextResponse.json({ 
+      success: true, 
+      messageId: data?.id,
+      fileName: resumeFile?.name || null 
+    })
   } catch (err) {
     console.error('Application route error:', err)
     return NextResponse.json(

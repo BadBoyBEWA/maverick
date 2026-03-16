@@ -3,7 +3,7 @@
 import { useState, FormEvent } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Section, FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
-import { MapPin, Clock, DollarSign, ChevronDown, ChevronUp, CheckCircle2, Loader2 } from "lucide-react"
+import { MapPin, Clock, DollarSign, ChevronDown, ChevronUp, CheckCircle2, Loader2, AlertCircle, FileText, X } from "lucide-react"
 
 type Job = {
   title: string
@@ -112,18 +112,81 @@ const jobs: Job[] = [
   },
 ]
 
+// File upload configuration
+const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB in bytes
+const ALLOWED_FILE_TYPES = [
+  'application/pdf',
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  'text/plain'
+]
+const ALLOWED_EXTENSIONS = ['.pdf', '.doc', '.docx', '.txt']
+
 export function JobListings() {
   const [openJob, setOpenJob] = useState<string | null>(null)
   const [applyingTo, setApplyingTo] = useState<string | null>(null)
   const [submitted, setSubmitted] = useState<Set<string>>(new Set())
   const [loading, setLoading] = useState(false)
+  const [fileError, setFileError] = useState<string | null>(null)
+  const [selectedFile, setSelectedFile] = useState<File | null>(null)
+
+  const validateFile = (file: File): string | null => {
+    // Check file size
+    if (file.size > MAX_FILE_SIZE) {
+      return `File size exceeds ${MAX_FILE_SIZE / (1024 * 1024)}MB limit`
+    }
+    
+    // Check file type
+    if (!ALLOWED_FILE_TYPES.includes(file.type)) {
+      return 'Invalid file type. Please upload PDF, DOC, DOCX, or TXT files only'
+    }
+    
+    return null
+  }
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    setFileError(null)
+    
+    if (file) {
+      const error = validateFile(file)
+      if (error) {
+        setFileError(error)
+        setSelectedFile(null)
+        e.target.value = '' // Clear the input
+      } else {
+        setSelectedFile(file)
+      }
+    } else {
+      setSelectedFile(null)
+    }
+  }
+
+  const clearSelectedFile = () => {
+    setSelectedFile(null)
+    setFileError(null)
+    // Reset the file input
+    const fileInput = document.getElementById('apply-resume') as HTMLInputElement
+    if (fileInput) {
+      fileInput.value = ''
+    }
+  }
 
   // handle actual form submission by calling our API route
   const handleApply = async (jobTitle: string, formData: FormData) => {
+    // Validate file is selected
+    if (!selectedFile) {
+      setFileError('Please upload your resume/CV')
+      return
+    }
+
     setLoading(true)
+    setFileError(null)
+    
     try {
-      // append job title before sending
+      // append job title and file before sending
       formData.append('jobTitle', jobTitle)
+      formData.append('resume', selectedFile)
 
       const res = await fetch('/api/apply', {
         method: 'POST',
@@ -134,12 +197,15 @@ export function JobListings() {
       if (data.success) {
         setSubmitted((prev) => new Set(prev).add(jobTitle))
         setApplyingTo(null)
+        setSelectedFile(null)
       } else {
         // you could display error message to user
         console.error('Application failed:', data.error)
+        setFileError(data.error || 'Failed to submit application')
       }
     } catch (err) {
       console.error('Network error submitting application', err)
+      setFileError('Network error. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -295,7 +361,11 @@ export function JobListings() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm p-4"
-            onClick={() => setApplyingTo(null)}
+            onClick={() => {
+              setApplyingTo(null)
+              setSelectedFile(null)
+              setFileError(null)
+            }}
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
@@ -308,8 +378,17 @@ export function JobListings() {
                 Apply for {applyingTo}
               </h3>
               <p className="mt-1 text-sm text-muted-foreground">
-                Fill in your details below. We will review your application promptly.
+                Fill in your details below. We will review your applicationnn promptly.
               </p>
+              
+              {/* File size info banner */}
+              <div className="mt-4 rounded-sm bg-primary/5 p-3 text-xs text-muted-foreground">
+                <p className="flex items-center gap-1">
+                  <FileText className="h-3 w-3" />
+                  Accepted formats: PDF, DOC, DOCX, TXT (Max {MAX_FILE_SIZE / (1024 * 1024)}MB)
+                </p>
+              </div>
+
               <form
                 onSubmit={async (e: FormEvent<HTMLFormElement>) => {
                   e.preventDefault()
@@ -317,11 +396,11 @@ export function JobListings() {
                   const data = new FormData(form)
                   await handleApply(applyingTo!, data)
                 }}
-                className="mt-6 flex flex-col gap-4"
+                className="mt-4 flex flex-col gap-4"
               >
                 <div>
                   <label htmlFor="apply-name" className="mb-1 block text-xs font-medium text-foreground">
-                    Full Name
+                    Full Name *
                   </label>
                   <input
                     id="apply-name"
@@ -332,9 +411,10 @@ export function JobListings() {
                     placeholder="Your full name"
                   />
                 </div>
+                
                 <div>
                   <label htmlFor="apply-email" className="mb-1 block text-xs font-medium text-foreground">
-                    Email
+                    Email *
                   </label>
                   <input
                     id="apply-email"
@@ -345,6 +425,20 @@ export function JobListings() {
                     placeholder="you@example.com"
                   />
                 </div>
+
+                <div>
+                  <label htmlFor="apply-phone" className="mb-1 block text-xs font-medium text-foreground">
+                    Phone Number
+                  </label>
+                  <input
+                    id="apply-phone"
+                    name="phone"
+                    type="tel"
+                    className="w-full rounded-sm border border-input bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
+                    placeholder="(123) 456-7890"
+                  />
+                </div>
+
                 <div>
                   <label htmlFor="apply-message" className="mb-1 block text-xs font-medium text-foreground">
                     Cover Letter
@@ -357,24 +451,55 @@ export function JobListings() {
                     placeholder="Tell us why you're a great fit..."
                   />
                 </div>
-                {/* <div>
+
+                <div>
                   <label htmlFor="apply-resume" className="mb-1 block text-xs font-medium text-foreground">
-                    Upload CV / Resume
+                    Upload CV / Resume *
                   </label>
                   <input
                     id="apply-resume"
                     name="resume"
                     type="file"
-                    accept=".pdf,.doc,.docx"
+                    accept=".pdf,.doc,.docx,.txt"
                     required
-                    className="w-full rounded-sm border border-input bg-background px-3 py-2.5 text-sm text-foreground focus:border-primary focus:outline-none"
+                    onChange={handleFileChange}
+                    className="w-full rounded-sm border border-input bg-background px-3 py-2.5 text-sm text-foreground file:mr-3 file:rounded-sm file:border-0 file:bg-primary file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-primary-foreground hover:file:bg-primary/90 focus:border-primary focus:outline-none"
                   />
-                </div> */}
+                  
+                  {/* Selected file indicator */}
+                  {selectedFile && (
+                    <div className="mt-2 flex items-center justify-between rounded-sm bg-primary/5 p-2">
+                      <div className="flex items-center gap-2 truncate">
+                        <FileText className="h-4 w-4 shrink-0 text-primary" />
+                        <span className="text-xs truncate">{selectedFile.name}</span>
+                        <span className="text-xs text-muted-foreground">
+                          ({(selectedFile.size / 1024).toFixed(1)} KB)
+                        </span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={clearSelectedFile}
+                        className="shrink-0 rounded-sm p-1 hover:bg-background"
+                      >
+                        <X className="h-3 w-3 text-muted-foreground" />
+                      </button>
+                    </div>
+                  )}
+
+                  {/* File error message */}
+                  {fileError && (
+                    <div className="mt-2 flex items-center gap-1 rounded-sm bg-destructive/10 p-2 text-xs text-destructive">
+                      <AlertCircle className="h-3 w-3 shrink-0" />
+                      <span>{fileError}</span>
+                    </div>
+                  )}
+                </div>
+
                 <div className="flex gap-3">
                   <button
                     type="submit"
-                    disabled={loading}
-                    className="inline-flex items-center gap-2 rounded-sm bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90 disabled:opacity-70"
+                    disabled={loading || !selectedFile}
+                    className="inline-flex items-center gap-2 rounded-sm bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {loading ? (
                       <>
@@ -387,7 +512,11 @@ export function JobListings() {
                   </button>
                   <button
                     type="button"
-                    onClick={() => setApplyingTo(null)}
+                    onClick={() => {
+                      setApplyingTo(null)
+                      setSelectedFile(null)
+                      setFileError(null)
+                    }}
                     className="rounded-sm border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-background"
                   >
                     Cancel
