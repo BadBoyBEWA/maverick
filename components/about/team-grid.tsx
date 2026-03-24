@@ -66,7 +66,7 @@ export function TeamGrid() {
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   {member.bio}
                 </p>
-                <a
+                {/* <a
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -75,7 +75,7 @@ export function TeamGrid() {
                 >
                   <Linkedin className="h-3.5 w-3.5" />
                   Connect
-                </a>
+                </a> */}
               </div>
             </div>
           </StaggerItem>
