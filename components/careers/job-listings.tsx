@@ -12,12 +12,51 @@ type Job = {
   salary: string
   location: string
   Hours: string
+  role:string[]
+  responsibilities:string[]
   requirements: string[]
   qualifications: string[]
   benefits: string[]
 }
 
 const jobs: Job[] = [
+  {
+    title: " PAYMENT PROCESSING OFFICER",
+    department: "Accounting",
+    type: "Full-time",
+    salary: "Commission-Based",
+    location: "REMOTE",
+    Hours: "Monday - Friday,9AM - 2PM (EST) 5 HOURS",
+    role:[
+      "The Payment Processing Officer is responsible for receiving, confirming, processing, documenting, and managing customer payments in accordance with company guidelines and operational procedures. The officer must ensure transparency, accountability, and accurate reporting of all financial transactions handled on behalf of the company."],
+    responsibilities:[
+        "* Receive and confirm customer payments.",
+        "* Process payments according to company procedures.",
+        "* Maintain accurate records of all transactions.",
+        "* Generate payment confirmations and receipts where necessary.",
+        "* Monitor pending and completed payments.",
+        "* Submit daily financial reports to management.",
+        "* Communicate professionally with customers regarding payment status.",
+        "* Escalate discrepancies, suspicious transactions, or failed payments immediately.",
+        "* Ensure confidentiality of all customer and company financial information.",
+        "* Follow all operational and compliance instructions provided by management.",
+    ],
+    requirements:[
+        "*Strong communication skills.",
+       "* High level of integrity and accountability.",
+        " * Attention to detail.",
+        "* Basic knowledge of financial record keeping.",
+        "* Ability to use payment platforms, spreadsheets, and messaging tools.",
+        "* Ability to follow instructions strictly.
+      ],
+      benefits:[
+                "The employee shall earn:",
+              " * 5% commission on the total amount of funds successfully received and processed.",
+              "Example:",
+              "* $10,000 processed = $500 commission.",
+              "* $50,000 processed = $2,500 commission."
+      ]
+  },
   {
     title: " Accounts Payable (AP) Clerk",
     department: "Accounting",
