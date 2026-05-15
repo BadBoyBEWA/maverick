@@ -42,20 +42,20 @@ const jobs: Job[] = [
         "* Follow all operational and compliance instructions provided by management.",
     ],
     requirements:[
-        "*Strong communication skills.",
-       "* High level of integrity and accountability.",
-        " * Attention to detail.",
-        "* Basic knowledge of financial record keeping.",
-        "* Ability to use payment platforms, spreadsheets, and messaging tools.",
-        "* Ability to follow instructions strictly."
+        "Strong communication skills.",
+       "High level of integrity and accountability.",
+        "Attention to detail.",
+        "Basic knowledge of financial record keeping.",
+        "Ability to use payment platforms, spreadsheets, and messaging tools.",
+        "Ability to follow instructions strictly."
       ],
       qualifications:[],
       benefits:[
                 "The employee shall earn:",
-              " * 5% commission on the total amount of funds successfully received and processed.",
+              " 5% commission on the total amount of funds successfully received and processed.",
               "Example:",
-              "* $10,000 processed = $500 commission.",
-              "* $50,000 processed = $2,500 commission."
+              "$10,000 processed = $500 commission.",
+              "$50,000 processed = $2,500 commission."
       ]
   },
   {
@@ -325,6 +325,38 @@ export function JobListings() {
                   >
                     <div className="border-t border-border p-5">
                       <div className="grid gap-6 md:grid-cols-3">
+                        <div>
+                          <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground">
+                            Role
+                          </h4>
+                          <ul className="mt-3 flex flex-col gap-2">
+                            {job.role.map((q) => (
+                              <li
+                                key={q}
+                                className="flex items-start gap-2 text-sm text-muted-foreground"
+                              >
+                                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                                {q}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground">
+                            Responsibilities
+                          </h4>
+                          <ul className="mt-3 flex flex-col gap-2">
+                            {job.responsibilities.map((q) => (
+                              <li
+                                key={q}
+                                className="flex items-start gap-2 text-sm text-muted-foreground"
+                              >
+                                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                                {q}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                         <div>
                           <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground">
                             Requirements
