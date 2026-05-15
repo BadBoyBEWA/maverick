@@ -49,7 +49,7 @@ const jobs: Job[] = [
         "* Ability to use payment platforms, spreadsheets, and messaging tools.",
         "* Ability to follow instructions strictly."
       ],
-      qualification:[],
+      qualifications:[],
       benefits:[
                 "The employee shall earn:",
               " * 5% commission on the total amount of funds successfully received and processed.",
