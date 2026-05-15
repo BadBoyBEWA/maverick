@@ -47,7 +47,7 @@ const jobs: Job[] = [
         " * Attention to detail.",
         "* Basic knowledge of financial record keeping.",
         "* Ability to use payment platforms, spreadsheets, and messaging tools.",
-        "* Ability to follow instructions strictly.
+        "* Ability to follow instructions strictly."
       ],
       benefits:[
                 "The employee shall earn:",
