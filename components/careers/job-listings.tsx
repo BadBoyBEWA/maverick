@@ -65,6 +65,8 @@ const jobs: Job[] = [
     salary: " $1,850.00 Bi-Weekly",
     location: "REMOTE",
     Hours: "Monday - Friday,9AM - 2PM (EST) 5 HOURS",
+    role:[],
+    responsibilities:[],
     requirements: [
       " Process high-volume vendor invoices from receipt through approval and posting (coding, matching, routing, and issue resolution.) ",
       " Perform 2-way/3-way matching when applicable; follow up with internal stakeholders to resolve discrepancies. ",
@@ -93,6 +95,8 @@ const jobs: Job[] = [
     salary: "$2,500.00 Bi-Weekly ",
     location: " REMOTE",
     Hours: "Monday - Friday, 9AM - 2PM (EST) 5 HOURS",
+    role:[],
+    responsibilities:[],
     requirements: [
       "  Provide market intelligence to customers and become a trusted partner ",
       "  Leverage business and market understanding to drive profitability and growth for both customers and Maverick's LLC",
@@ -126,6 +130,8 @@ const jobs: Job[] = [
     salary: " $2,550.00 Bi-Weekly",
     location: "REMOTE",
     Hours: "Monday - Friday, 9AM - 5PM (EST) 5hours",
+    role:[],
+    responsibilities:[],
     requirements: [
       "  Prioritize and handle incoming communication, including greeting guests, emails, phone calls, and inquiries, with discretion and responsiveness ",
       "  Assist in planning and coordinating special events, conferences, and board meetings, ensuring successful execution and smooth logistics.",
