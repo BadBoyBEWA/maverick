@@ -8,7 +8,7 @@ import { WhyUs } from "@/components/about/why-us"
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Maverick's LLC - Dallas's trusted steel supply partner since 2010, serving construction, mining, and industrial sectors.",
+    "Learn about Maverick's LLC - Benton Harbor's trusted steel supply partner since 2010, serving construction, mining, and industrial sectors.",
 }
 
 export default function AboutPage() {
@@ -16,7 +16,7 @@ export default function AboutPage() {
     <>
       <PageHero
         title="Our Story"
-        subtitle="Built on steel, driven by trust. Discover how Maverick's LLC became Dallas's leading steel supply partner."
+        subtitle="Built on steel, driven by trust. Discover how Maverick's LLC became Benton Harbor's leading steel supply partner."
         backgroundImage="/images/about-hero.jpg"
       />
       <Timeline />

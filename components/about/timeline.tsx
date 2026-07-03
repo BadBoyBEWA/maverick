@@ -5,9 +5,9 @@ import { Section, FadeIn, StaggerContainer, StaggerItem } from "@/components/mot
 const milestones = [
   {
     year: "2010",
-    title: "Founded in Dallas",
+    title: "Founded in Benton Harbor",
     description:
-      "Maverick's LLC was established as a local steel supplier serving the Dallas-Fort Worth construction market.",
+      "Maverick's LLC was established as a local steel supplier serving the Southwest Michigan construction market.",
   },
   {
     year: "2013",

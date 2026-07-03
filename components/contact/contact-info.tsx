@@ -7,8 +7,8 @@ const contactDetails = [
   {
     icon: MapPin,
     label: "Our Location",
-    value: "1234 Industrial Blvd, Suite 500",
-    extra: "Dallas, TX 75201",
+    value: "2390 Pipestone Rd",
+    extra: "Benton Harbor, MI 49022, United States",
   },
   {
     icon: Phone,
@@ -38,8 +38,8 @@ export function ContactInfo() {
             Get In Touch
           </h2>
           <p className="text-muted-foreground">
-            Visit us at our Dallas headquarters or reach out through any of the
-            channels below. We are here to help with your steel and roofing
+            Visit us at our Benton Harbor location or reach out through any of
+            the channels below. We are here to help with your steel and roofing
             supply needs.
           </p>
         </div>
@@ -69,7 +69,7 @@ export function ContactInfo() {
           <div className="relative aspect-video bg-card">
             <iframe
               title="Maverick's LLC Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d214587.2237691665!2d-96.87194824364518!3d32.82058448437128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c19f77b45974b%3A0xb9ec9ba4f647571f!2sDallas%2C%20TX!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.123456789012!2d-86.4424!3d42.1167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8814dc8f0f0f0f0f%3A0x0!2s2390%20Pipestone%20Rd%2C%20Benton%20Harbor%2C%20MI%2049022!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
               className="absolute inset-0 h-full w-full border-0 grayscale"
               allowFullScreen
               loading="lazy"

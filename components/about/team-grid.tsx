@@ -7,7 +7,7 @@ const team = [
   {
     name: "Robert Maverick",
     role: "CEO & Founder",
-    bio: "Founded the company in 2010 with a vision to revolutionize steel supply in the Dallas-Fort Worth area. 25+ years in the steel industry.",
+    bio: "Founded the company in 2010 with a vision to revolutionize steel supply in the Southwest Michigan region. 25+ years in the steel industry.",
     initials: "RM",
   },
   {

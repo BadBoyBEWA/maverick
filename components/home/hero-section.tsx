@@ -38,7 +38,7 @@ export function HeroSection() {
           >
             <span className="h-1.5 w-1.5 rounded-full bg-[#5a9be0]" />
             <span className="text-xs font-medium uppercase tracking-wider text-[#5a9be0]">
-              Dallas, TX - Since 2010
+              Benton Harbor, MI - Since 2010
             </span>
           </motion.div>
 

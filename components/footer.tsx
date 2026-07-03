@@ -37,7 +37,7 @@ export function Footer() {
             </Link>
             <p className="text-sm leading-relaxed text-white/60">
               Empowering construction and mining industries with premium steel
-              solutions since 2010. Your trusted partner in Dallas, TX.
+              solutions since 2010. Your trusted partner in Benton Harbor, MI.
             </p>
             <div className="flex gap-3">
               <a
@@ -107,7 +107,7 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#5a9be0]" />
                 <span className="text-sm leading-relaxed text-white/60">
-                  2723 Harbinger Ln, Dallas, TX 75287, United States
+                  2390 Pipestone Rd, Benton Harbor, MI 49022, United States
                 </span>
               </li>
               <li className="flex items-center gap-3">

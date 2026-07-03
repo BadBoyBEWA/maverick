@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-// Initialize Resend with your API key
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Initialize Resend only when an API key is available.
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 // Define TypeScript interface for the request body
 interface ContactFormData {
@@ -34,6 +36,14 @@ export async function POST(request: Request) {
       console.error('TO_EMAIL environment variable is not set');
       return NextResponse.json(
         { error: 'Server configuration error' },
+        { status: 500 }
+      );
+    }
+
+    if (!resend) {
+      console.error('Resend API key is not configured');
+      return NextResponse.json(
+        { error: 'Email service is not configured' },
         { status: 500 }
       );
     }
@@ -179,7 +189,7 @@ export async function POST(request: Request) {
                     <li>Check out our <a href="https://www.maverickllctexas.com/services">custom fabrication services</a></li>
                   </ul>
                   <a href="https://www.maverickllctexas.com" class="button">Visit Our Website</a>
-                  <p style="margin-top: 30px;">Best regards,<br>The Maverick's LLC Team<br>Dallas, TX</p>
+                  <p style="margin-top: 30px;">Best regards,<br>The Maverick's LLC Team<br>Benton Harbor, MI</p>
                 </div>
                 <div class="footer">
                   <p>© ${new Date().getFullYear()} Maverick's LLC. All rights reserved.</p>

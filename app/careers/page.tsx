@@ -6,7 +6,7 @@ import { CultureSection } from "@/components/careers/culture-section"
 export const metadata: Metadata = {
   title: "Careers",
   description:
-    "Join the Maverick's LLC team in Dallas, TX. Explore open positions in steel supply, fabrication, sales, and management.",
+    "Join the Maverick's LLC team in Benton Harbor, MI. Explore open positions in steel supply, fabrication, sales, and management.",
 }
 
 export default function CareersPage() {

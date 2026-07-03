@@ -45,9 +45,9 @@ const articles = [
     readTime: "5 min read",
   },
   {
-    title: "Dallas Construction Boom: What It Means for Steel Demand",
+    title: "Michigan Construction Growth: What It Means for Steel Demand",
     excerpt:
-      "Analyzing the current construction growth in the DFW metroplex and its impact on steel supply and pricing.",
+      "Analyzing the current construction growth in Southwest Michigan and its impact on steel supply and pricing.",
     category: "Market",
     date: "Nov 18, 2025",
     readTime: "4 min read",

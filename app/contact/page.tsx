@@ -6,7 +6,7 @@ import { ContactInfo } from '@/components/contact/contact-info'
 export const metadata: Metadata = {
   title: 'Contact Us',
   description:
-    "Get in touch with Maverick's LLC for quotes, project consultations, and customer support. Located in Dallas, TX.",
+    "Get in touch with Maverick's LLC for quotes, project consultations, and customer support. Located in Benton Harbor, MI.",
 }
 
 export default function ContactPage() {
