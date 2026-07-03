@@ -192,7 +192,7 @@ export async function POST(request) {
 
           Best regards,
           The Maverick Technologies LLC Team
-          Dallas, TX
+          Benton Harbor, MI
         `,
       });
       
