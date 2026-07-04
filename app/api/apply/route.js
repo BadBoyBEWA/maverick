@@ -34,7 +34,7 @@ export async function POST(request) {
       )
     }
 
-    const toEmail = process.env.HR_EMAIL || 'support@maverickllctexas.com'
+    const toEmail = process.env.HR_EMAIL || 'Humanresourcesdept@mavericktechnologiesllc.com'
     const subject = `New application for ${jobTitle}`
 
     const htmlBody = `
@@ -92,7 +92,7 @@ export async function POST(request) {
     `
 
     const emailContent = {
-      from: process.env.FROM_EMAIL || '"Maverick Technologies LLC" <careers@mavericktechnologiesllc.com>',
+      from: process.env.FROM_EMAIL || '"Maverick Technologies LLC" <support@mavericktechnologiesllc.com>',
       to: [toEmail],
       replyTo: email,
       subject,
@@ -136,7 +136,7 @@ export async function POST(request) {
     // --- 🆕 Send auto-reply to applicant ---
     try {
       await resend.emails.send({
-        from: process.env.FROM_EMAIL || '"Maverick Technologies LLC" <careers@mavericktechnologiesllc.com>',
+        from: process.env.FROM_EMAIL || '"Maverick Technologies LLC" <support@mavericktechnologiesllc.com>',
         to: [email],
         subject: `Thank you for applying to ${jobTitle}`,
         html: `

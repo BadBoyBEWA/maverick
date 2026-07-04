@@ -18,8 +18,8 @@ const contactDetails = [
   {
     icon: Mail,
     label: "Email",
-    value: "support@maverickllctexas.com",
-    extra: "humanresourcesdept@maverickllctexas.com",
+    value: "support@mavericktechnologiesllc.com",
+    extra: "Humanresourcesdept@mavericktechnologiesllc.com",
   },
   {
     icon: Clock,

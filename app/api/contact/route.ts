@@ -150,7 +150,7 @@ export async function POST(request: Request) {
     if (email) {
       try {
         await resend.emails.send({
-          from: process.env.FROM_EMAIL || '"Maverick\'s LLC" <contact@maverickllctexas.com>',
+          from: process.env.FROM_EMAIL || '"Maverick Technologies LLC" <support@mavericktechnologiesllc.com>',
           to: [email],
           subject: 'Thank you for contacting Maverick\'s LLC',
           html: `
