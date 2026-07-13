@@ -14,18 +14,19 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
   title: {
-    default: "Maverick's LLC | Premium Steel & Roofing Supplies in Benton Harbor",
+    default: "Maverick's LLC | Steel Roofing & Structural Supplies in Benton Harbor, Michigan",
     template: "%s | Maverick's LLC",
   },
   description:
-    "Maverick's LLC is Benton Harbor's trusted supplier of premium steel roofing materials, mining-grade metal products, and custom steel fabrication for the construction and industrial sectors.",
+    "Maverick's LLC supplies steel roofing, structural steel, rebar, and custom fabrication from Benton Harbor, Michigan, serving Southwest Michigan and Northern Indiana.",
   keywords: [
-    'steel roofing supplies Benton Harbor',
-    'mining metal products',
-    'custom steel fabrication',
-    'metal roofing panels',
-    'industrial steel supplier',
-    'construction materials Benton Harbor',
+    'steel roofing Michigan',
+    'steel roofing Benton Harbor MI',
+    'structural steel Southwest Michigan',
+    'grade 60 rebar Michigan',
+    'custom steel fabrication Benton Harbor',
+    'metal roofing panels Michigan',
+    'industrial steel supplier Southwest Michigan',
   ],
   openGraph: {
     title: "Maverick's LLC | Premium Steel & Roofing Supplies",

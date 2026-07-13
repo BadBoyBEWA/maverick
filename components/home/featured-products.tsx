@@ -10,36 +10,42 @@ const products = [
     category: "Roofing",
     spec: "26-gauge galvanized steel",
     description: "High-durability corrugated panels designed for commercial and residential roofing applications.",
+    href: "/products/corrugated-steel-sheets",
   },
   {
     title: "Mining Reinforcement Bars",
     category: "Mining",
     spec: "Grade 60 rebar, ASTM A615",
     description: "Heavy-duty reinforcement bars engineered for underground mining structural support.",
+    href: "/products/grade-60-rebar",
   },
   {
     title: "Standing Seam Panels",
     category: "Roofing",
     spec: "24-gauge Galvalume finish",
     description: "Premium interlocking roof panels with superior weather resistance and sleek aesthetics.",
+    href: "/products/standing-seam-panels",
   },
   {
     title: "Structural I-Beams",
     category: "Mining",
     spec: "ASTM A992 wide-flange",
     description: "Wide-flange steel beams for heavy-load structural applications in mining and construction.",
+    href: "/products/structural-i-beams",
   },
   {
     title: "Protective Coatings",
     category: "Services",
     spec: "Zinc & epoxy finishes",
     description: "Industrial-grade protective coatings that extend the lifespan of steel in harsh environments.",
+    href: "/contact",
   },
   {
     title: "Custom Fabrication",
     category: "Services",
     spec: "CNC plasma & laser cutting",
     description: "Precision cutting, welding, and bending services tailored to your exact specifications.",
+    href: "/contact",
   },
 ]
 
@@ -59,7 +65,7 @@ export function FeaturedProducts() {
               What We Supply
             </span>
             <h2 className="text-balance text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              Featured Products & Services
+              Steel Products for Southwest Michigan & Northern Indiana
             </h2>
           </div>
           <Link
@@ -91,7 +97,7 @@ export function FeaturedProducts() {
                 {product.description}
               </p>
               <Link
-                href="/products"
+                href={product.href}
                 className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-primary transition-colors hover:text-primary/80"
               >
                 Learn More

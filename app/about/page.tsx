@@ -6,9 +6,9 @@ import { TeamGrid } from "@/components/about/team-grid"
 import { WhyUs } from "@/components/about/why-us"
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Maverick's LLC | Benton Harbor Steel Supplier",
   description:
-    "Learn about Maverick's LLC - Benton Harbor's trusted steel supply partner since 2010, serving construction, mining, and industrial sectors.",
+    "Learn how Maverick's LLC supports construction, mining, and industrial projects from Benton Harbor, Michigan, with steel roofing, structural steel, rebar, and fabrication services.",
 }
 
 export default function AboutPage() {
@@ -16,7 +16,7 @@ export default function AboutPage() {
     <>
       <PageHero
         title="Our Story"
-        subtitle="Built on steel, driven by trust. Discover how Maverick's LLC became Benton Harbor's leading steel supply partner."
+        subtitle="Built on steel, driven by trust. Discover how Maverick's LLC became a trusted steel supply partner for Southwest Michigan and Northern Indiana from Benton Harbor, Michigan."
         backgroundImage="/images/about-hero.jpg"
       />
       <Timeline />

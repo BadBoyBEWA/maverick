@@ -49,8 +49,8 @@ export function HeroSection() {
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-balance text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
           >
-            Empowering Construction & Mining with{" "}
-            <span className="text-[#5a9be0]">Premium Steel</span> Solutions
+            Premium Steel Roofing & Structural Supplies from{" "}
+            <span className="text-[#5a9be0]">Benton Harbor, Michigan</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -60,8 +60,7 @@ export function HeroSection() {
             transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="mt-6 max-w-xl text-lg leading-relaxed text-white/70 md:text-xl"
           >
-            Top-tier steel roofing materials, mining-grade metal products, and
-            custom fabrication for projects that demand reliability and innovation.
+            Trusted steel roofing, structural steel, rebar, and custom fabrication for Southwest Michigan and Northern Indiana projects that demand durability and fast turnaround.
           </motion.p>
 
           {/* CTAs */}

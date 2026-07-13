@@ -17,6 +17,7 @@ type Product = {
   description: string
   applications: string[]
   price: string
+  href?: string
 }
 
 type Category = {
@@ -42,6 +43,7 @@ const categories: Category[] = [
           "Industry-standard corrugated panels offering excellent durability and corrosion resistance for commercial roofing.",
         applications: ["Commercial roofs", "Warehouses", "Agricultural buildings"],
         price: "Contact for Quote",
+        href: "/products/corrugated-steel-sheets",
       },
       {
         name: "Standing Seam Panels",
@@ -50,6 +52,7 @@ const categories: Category[] = [
           "Architectural-grade interlocking panels with superior weather tightness and a modern, clean aesthetic.",
         applications: ["Commercial buildings", "Residential upgrades", "Institutional projects"],
         price: "Contact for Quote",
+        href: "/products/standing-seam-panels",
       },
       {
         name: "Metal Roof Tiles",
@@ -91,6 +94,7 @@ const categories: Category[] = [
           "High-strength deformed reinforcing bars for concrete reinforcement in mining infrastructure.",
         applications: ["Tunnel reinforcement", "Foundation work", "Structural support"],
         price: "Contact for Quote",
+        href: "/products/grade-60-rebar",
       },
       {
         name: "Structural I-Beams",
@@ -99,6 +103,7 @@ const categories: Category[] = [
           "Wide-flange steel beams providing maximum load-bearing capacity for mining structures.",
         applications: ["Mine shaft framing", "Equipment platforms", "Overhead supports"],
         price: "Contact for Quote",
+        href: "/products/structural-i-beams",
       },
       {
         name: "Steel Mesh Panels",
@@ -255,9 +260,8 @@ export function ProductsGrid() {
                   >
                     <div className="grid gap-4 p-6 pt-0 sm:grid-cols-2 lg:grid-cols-3">
                       {cat.products.map((product) => (
-                        <button
+                        <div
                           key={product.name}
-                          onClick={() => setSelectedProduct(product)}
                           className="group flex flex-col items-start rounded-sm border border-border bg-background p-5 text-left transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-0.5"
                         >
                           <h4 className="text-sm font-semibold text-foreground">
@@ -269,11 +273,24 @@ export function ProductsGrid() {
                           <p className="mt-2 flex-1 text-xs leading-relaxed text-muted-foreground">
                             {product.description}
                           </p>
-                          <span className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-primary">
-                            View Details
-                            <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                          </span>
-                        </button>
+                          <div className="mt-3 flex flex-wrap gap-2">
+                            {product.href ? (
+                              <Link
+                                href={product.href}
+                                className="inline-flex items-center gap-1 text-xs font-medium text-primary transition-colors hover:text-primary/80"
+                              >
+                                Open Page
+                                <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+                              </Link>
+                            ) : null}
+                            <button
+                              onClick={() => setSelectedProduct(product)}
+                              className="text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+                            >
+                              Quick View
+                            </button>
+                          </div>
+                        </div>
                       ))}
                     </div>
                   </motion.div>

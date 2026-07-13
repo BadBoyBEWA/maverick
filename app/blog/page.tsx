@@ -3,9 +3,9 @@ import { PageHero } from "@/components/motion"
 import { BlogGrid } from "@/components/blog/blog-grid"
 
 export const metadata: Metadata = {
-  title: "Blog & Resources",
+  title: "Steel Industry Insights for Michigan Builders",
   description:
-    "Stay up to date with industry insights, steel trends, and expert advice from the Maverick's LLC team.",
+    "Explore local steel roofing and fabrication insights for Michigan builders, contractors, and industrial teams from Maverick's LLC.",
 }
 
 export default function BlogPage() {

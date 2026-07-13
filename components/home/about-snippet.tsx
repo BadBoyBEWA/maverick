@@ -57,12 +57,10 @@ export function AboutSnippet() {
               {"Benton Harbor's Trusted Steel Supply Partner Since 2010"}
             </h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">
-              {"Maverick's LLC has been at the forefront of steel supply and metal fabrication for over a decade. We serve the construction, mining, and industrial sectors across Texas and beyond, providing premium-grade materials that stand the test of time."}
+              {"Maverick's LLC is based in Benton Harbor, Michigan, and has been supporting construction, mining, and industrial teams across Southwest Michigan and Northern Indiana with premium steel products and custom fabrication for more than a decade."}
             </p>
             <p className="mt-3 leading-relaxed text-muted-foreground">
-              From corrugated roofing panels to reinforced mining beams, our product
-              range and expert team ensure every project gets the materials it
-              deserves.
+              From corrugated steel roofing panels to grade 60 rebar and structural I-beams, our product range and expert team help local contractors and industrial operators get dependable materials delivered on time.
             </p>
             <Link
               href="/about"

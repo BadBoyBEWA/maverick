@@ -3,9 +3,9 @@ import { PageHero } from "@/components/motion"
 import { ProductsGrid } from "@/components/products/products-grid"
 
 export const metadata: Metadata = {
-  title: "Products & Services",
+  title: "Steel Roofing & Structural Steel Products | Benton Harbor, MI",
   description:
-    "Browse Maverick's LLC's full range of steel roofing panels, mining reinforcement materials, and custom fabrication services.",
+    "Browse Maverick's LLC's full range of steel roofing panels, structural steel, rebar, and custom fabrication services available from Benton Harbor, Michigan.",
 }
 
 export default function ProductsPage() {
