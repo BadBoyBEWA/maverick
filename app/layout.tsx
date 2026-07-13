@@ -34,6 +34,9 @@ export const metadata: Metadata = {
       'Empowering construction and mining with premium steel solutions since 2010.',
     type: 'website',
   },
+  other: {
+    'msvalidate.01': '0D1F9E7680B22579E1A06107803474BA',
+  },
   // add favicons; ensure the files exist under public/
   icons: {
     // primary icon is PNG in this project instead of .ico
